@@ -16,9 +16,6 @@ struct packet
 int pid=-1;
 struct protoent *proto=NULL;
 
-/*--------------------------------------------------------------------*/
-/*--- checksum - standard 1s complement checksum                   ---*/
-/*--------------------------------------------------------------------*/
 unsigned short checksum(void *b, int len)
 {	unsigned short *buf = b;
 	unsigned int sum=0;
@@ -34,9 +31,7 @@ unsigned short checksum(void *b, int len)
 	return result;
 }
 
-/*--------------------------------------------------------------------*/
-/*--- display - present echo info                                  ---*/
-/*--------------------------------------------------------------------*/
+
 void display(void *buf, int bytes)
 {	int i;
 	struct iphdr *ip = buf;
@@ -61,9 +56,6 @@ void display(void *buf, int bytes)
 	}
 }
 
-/*--------------------------------------------------------------------*/
-/*--- listener - separate process to listen for and collect messages--*/
-/*--------------------------------------------------------------------*/
 void listener(void)
 {	int sd;
 	struct sockaddr_in addr;
@@ -88,9 +80,6 @@ void listener(void)
 	exit(0);
 }
 
-/*--------------------------------------------------------------------*/
-/*--- ping - Create message and send it.                           ---*/
-/*--------------------------------------------------------------------*/
 void ping(struct sockaddr_in *addr)
 {	const int val=255;
 	int i, sd, cnt=1;
@@ -126,10 +115,6 @@ void ping(struct sockaddr_in *addr)
 		sleep(1);
 	}
 }
-
-/*--------------------------------------------------------------------*/
-/*--- main - look up host and start ping processes.                ---*/
-/*--------------------------------------------------------------------*/
 int main(int count, char *strings[])
 {	struct hostent *hname;
 	struct sockaddr_in addr;
