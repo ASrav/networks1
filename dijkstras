@@ -1,6 +1,7 @@
 #include<iostream>
 using namespace std;
 #define max 1000
+//jgk
 class NODE
 {
         int data;
